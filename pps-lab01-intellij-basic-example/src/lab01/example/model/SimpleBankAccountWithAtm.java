@@ -30,7 +30,7 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public void withdraw(int userID, double amount) {
-        if(checkUser(userID) && this.balance > (amount + ATM_FEE)) {
+        if(checkUser(userID) && this.isWithdrawAllowed(amount)) {
           this.balance -= (amount + ATM_FEE);
         }
 
