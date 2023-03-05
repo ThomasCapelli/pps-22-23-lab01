@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,8 +25,8 @@ class CircularListTest {
     }
     @Test
     void testAddElement() {
-        list.add(10);
-        assertEquals(1, list.size());
+        this.fillList();
+        assertEquals(3, list.size());
     }
     @Test
     void testIsEmpty() {
@@ -33,18 +34,25 @@ class CircularListTest {
     }
     @Test
     void testForwardIteration() {
-        list.add(10);
-        list.add(30);
-        assertEquals(10, list.forwardIterator().next());
+        this.fillList();
+        assertEquals(Optional.of(10), list.forwardIterator().next());
     }
     @Test
     void testBackwardIteration() {
-        list.add(10);
-        list.add(30);
-        assertEquals(30, list.backwardIterator().next());
+        this.fillList();
+        assertEquals(Optional.of(40), list.backwardIterator().next());
     }
 
-
+    @Test
+    void testNextIterationOnEmptyList() {
+        assertTrue(this.list.isEmpty());
+        assertEquals(Optional.empty(), list.forwardIterator().next());
+    }
+    private void fillList() {
+        list.add(10);
+        list.add(30);
+        list.add(40);
+    }
 
 
 }

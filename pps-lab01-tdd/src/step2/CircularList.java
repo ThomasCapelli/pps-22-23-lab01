@@ -1,6 +1,7 @@
 package step2;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 public interface CircularList {
     void add(int i);
@@ -9,7 +10,7 @@ public interface CircularList {
 
     boolean isEmpty();
 
-    Iterator<Integer> forwardIterator();
+    Iterator<Optional<Integer>> forwardIterator();
 
-    Iterator<Integer> backwardIterator();
+    Iterator<Optional<Integer>> backwardIterator();
 }

@@ -25,37 +25,44 @@ public class CircularListImpl implements CircularList {
     }
 
     @Override
-    public Iterator<Integer> forwardIterator() {
-        return new Iterator<>() {
+    public Iterator<Optional<Integer>> forwardIterator() {
+        return new Iterator<Optional<Integer>>() {
             @Override
             public boolean hasNext() {
                 return !list.isEmpty();
             }
 
             @Override
-            public Integer next() {
-                if (position >= (list.size() - 1)) {
-                    position = 0;
+            public Optional<Integer> next() {
+                if (hasNext()){
+                    if (position >= (list.size() - 1)) {
+                        position = 0;
+                    }
+                    return Optional.of(list.get(position));
                 }
-                return list.get(position);
+                return Optional.empty();
+
             }
         };
     }
 
     @Override
-    public Iterator<Integer> backwardIterator() {
-        return new Iterator<Integer>() {
+    public Iterator<Optional<Integer>> backwardIterator() {
+        return new Iterator<Optional<Integer>>() {
             @Override
             public boolean hasNext() {
                 return !isEmpty();
             }
 
             @Override
-            public Integer next() {
-                if (position <= 0) {
-                    position = list.size() - 1;
+            public Optional<Integer> next() {
+                if (hasNext()) {
+                    if (position <= 0) {
+                        position = list.size() - 1;
+                    }
+                    return Optional.of(list.get(position));
                 }
-                return list.get(position);
+                return Optional.empty();
             }
         };
     }
