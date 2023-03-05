@@ -11,5 +11,5 @@ public interface CircularList {
 
     int size();
 
-    <T> Optional<T> filteredNext(Predicate predicate);
+    Optional<Integer> filteredNext(Predicate<Integer> predicate);
 }

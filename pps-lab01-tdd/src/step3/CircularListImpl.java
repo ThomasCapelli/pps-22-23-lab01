@@ -24,8 +24,8 @@ public class CircularListImpl implements CircularList {
     }
 
     @Override
-    public Optional<Integer> filteredNext(Predicate predicate) {
-        return circularList.stream().filter(predicate).findFirst();
+    public Optional<Integer> filteredNext(Predicate<Integer> predicate) {
+        return this.circularList.stream().filter(predicate).findFirst();
     }
 
 

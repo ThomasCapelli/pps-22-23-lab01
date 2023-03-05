@@ -21,17 +21,28 @@ class CircularListTest {
     }
     @Test
     void testAddElement() {
-        this.circularList.add(30);
+        this.fillList();
         assertFalse(circularList.isEmpty());
     }
     @Test
     void testSize() {
-        this.circularList.add(30);
-        this.circularList.add(10);
-        assertEquals(2 ,circularList.size());
+        this.fillList();
+        assertEquals(3 , circularList.size());
     }
 
     @Test
     void testFilteredNext() {
+        this.fillList();
+        assertEquals(Optional.of(100), circularList.filteredNext(x -> (x >= 100)));
+    }
+
+    @Test
+    void testEmptyFilterNext() {
+        assertEquals(Optional.empty(), circularList.filteredNext(x -> x < 0));
+    }
+    private void fillList() {
+        this.circularList.add(10);
+        this.circularList.add(30);
+        this.circularList.add(100);
     }
 }
